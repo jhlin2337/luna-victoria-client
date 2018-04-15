@@ -25,6 +25,14 @@
   width: 80px;
 }
 
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+.invalid {
+  color: red;
+}
+
 @media(max-width: 576px) {
   .btn-login {
     width: 100%;
