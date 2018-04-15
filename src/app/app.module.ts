@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -13,6 +14,12 @@ import { DrilldownComponent } from './planner/drilldown/drilldown.component';
 import { UserService } from './home/user.service';
 import { GoalService } from './planner/goal.service';
 
+const routes = [
+  { path: '', component: HomeComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'monthly-planner', component: DrilldownComponent },
+  { path: '**', redirectTo: '/' }
+];
 
 @NgModule({
   declarations: [
@@ -26,7 +33,8 @@ import { GoalService } from './planner/goal.service';
   imports: [
     BrowserModule,
     HttpModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [UserService, GoalService],
   bootstrap: [AppComponent]

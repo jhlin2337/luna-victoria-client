@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
+import { Router } from '@angular/router';
 import { UserService } from './user.service';
-import { Subject } from 'rxjs/Subject';
 import { AppSettings } from '../app-settings';
 
 @Component({
@@ -15,10 +15,11 @@ export class HomeComponent implements OnInit {
   signupSuccessful: boolean;
   signupEmailExists: boolean;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router: Router) {
     this.signupInvalid = false;
     this.signupSuccessful = false;
     this.signupEmailExists = false;
+    console.log(localStorage.getItem(AppSettings.JWT_TOKEN));
   }
 
   ngOnInit() { }
@@ -33,9 +34,12 @@ export class HomeComponent implements OnInit {
 
     // Make login request to backend
     this.userService.login(loginForm.value)
+      // Store jwt token that we received from the backend if the login is successful
       .subscribe((data: any) => {
         localStorage.setItem(AppSettings.JWT_TOKEN, data.token);
+        this.router.navigate(['/dashboard']);
       },
+      // Alert the user if authentication failed
       (error) => {
         alert('Authentication Failed. Incorrect email or password');
       }
@@ -57,9 +61,11 @@ export class HomeComponent implements OnInit {
 
     // Make signup request to backend
     this.userService.signup(signupForm.value)
+      // Alert user signup was successful
       .subscribe((data: any) => {
         this.signupSuccessful = true;
       },
+      // Alert user signup was unsuccessful
       (error) => {
         this.signupEmailExists = true;
       }
