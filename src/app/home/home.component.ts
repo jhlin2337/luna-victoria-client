@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
 import { UserService } from './user.service';
 import { Subject } from 'rxjs/Subject';
+import { AppSettings } from '../app-settings';
 
 @Component({
   selector: 'app-home',
@@ -33,8 +34,12 @@ export class HomeComponent implements OnInit {
     // Make login request to backend
     this.userService.login(loginForm.value)
       .subscribe((data: any) => {
-        console.log(data);
-      });
+        localStorage.setItem(AppSettings.JWT_TOKEN, data.token);
+      },
+      (error) => {
+        alert('Authentication Failed. Incorrect email or password');
+      }
+    );
   }
 
   // Communicate with backend to sign user up
@@ -44,6 +49,8 @@ export class HomeComponent implements OnInit {
       this.signupInvalid = true;
       return;
     }
+
+    // Adjust UI display
     this.signupInvalid = false;
     this.signupSuccessful = false;
     this.signupEmailExists = false;
