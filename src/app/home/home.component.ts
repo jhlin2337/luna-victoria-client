@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
 import { UserService } from './user.service';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'app-home',
@@ -10,13 +11,16 @@ import { UserService } from './user.service';
 export class HomeComponent implements OnInit {
 
   signupInvalid: boolean;
+  signupSuccessful: boolean;
+  signupEmailExists: boolean;
 
   constructor(private userService: UserService) {
     this.signupInvalid = false;
+    this.signupSuccessful = false;
+    this.signupEmailExists = false;
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   // Communicate with backend to log user in
   login(loginForm) {
@@ -41,15 +45,17 @@ export class HomeComponent implements OnInit {
       return;
     }
     this.signupInvalid = false;
-
-    console.log('signup');
-    console.log(signupForm);
-    console.log(signupForm.value);
+    this.signupSuccessful = false;
+    this.signupEmailExists = false;
 
     // Make signup request to backend
     this.userService.signup(signupForm.value)
       .subscribe((data: any) => {
-        console.log(data);
-      });
+        this.signupSuccessful = true;
+      },
+      (error) => {
+        this.signupEmailExists = true;
+      }
+    );
   }
 }

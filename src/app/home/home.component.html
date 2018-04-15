@@ -11,6 +11,8 @@
   </nav>
   <div class="content">
     <div class="signup">
+      <small class="valid mx-3" *ngIf="signupSuccessful">Signup successful! Please login to continue</small>
+      <small class="invalid mx-3" *ngIf="signupEmailExists">There's an existing user with this email</small>
       <form (ngSubmit)="signup(signupForm)" #signupForm="ngForm" class="mx-3 my-3">
         <div class="form-group">
           <label for="signupEmail">Email address</label>
