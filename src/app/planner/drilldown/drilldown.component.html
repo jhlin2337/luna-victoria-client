@@ -39,13 +39,26 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalCenterTitle">Add New Goal</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        Adding schtuff
+        <form>
+          <div class="form-group">
+            <label for="goal-title" class="col-form-label">Title:</label>
+            <input type="text" class="form-control" id="goal-title">
+          </div>
+          <div class="form-group">
+            <label for="goal-description" class="col-form-label">Description:</label>
+            <textarea class="form-control" id="goal-description"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="goal-deadline" class="col-form-label">Deadline:</label>
+            <input type="date" class="form-control" min="2000-01-01" max="2100-01-01" id="goal-deadline">
+          </div>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -60,16 +73,29 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalCenterTitle">Edit Goal</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        Editing schtuff
+        <form>
+          <div class="form-group">
+            <label for="goal-title" class="col-form-label">Title:</label>
+            <input type="text" class="form-control" id="goal-title">
+          </div>
+          <div class="form-group">
+            <label for="goal-description" class="col-form-label">Description:</label>
+            <textarea class="form-control" id="goal-description"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="goal-deadline" class="col-form-label">Deadline:</label>
+            <input type="date" class="form-control" min="2000-01-01" max="2100-01-01" id="goal-deadline">
+          </div>
+        </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger">Delete</button>
         <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
