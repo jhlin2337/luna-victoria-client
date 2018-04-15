@@ -1,3 +1,17 @@
 .card {
   box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
 }
+
+.card-body {
+  height: 200px;
+  padding: 0;
+  overflow: scroll;
+}
+
+input {
+}
+
+.checkmark {
+  margin: 2px 0;
+}
+

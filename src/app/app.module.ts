@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { PlannerComponent } from './planner/planner.component';
 import { DashboardComponent } from './planner/dashboard/dashboard.component';
 import { MonthlyGoalsCardComponent } from './planner/dashboard/monthly-goals-card/monthly-goals-card.component';
+import { DrilldownComponent } from './planner/drilldown/drilldown.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { MonthlyGoalsCardComponent } from './planner/dashboard/monthly-goals-car
     HomeComponent,
     PlannerComponent,
     DashboardComponent,
-    MonthlyGoalsCardComponent
+    MonthlyGoalsCardComponent,
+    DrilldownComponent
   ],
   imports: [
     BrowserModule
