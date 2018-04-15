@@ -1,0 +1,46 @@
+.planner {
+  width: 100vw;
+  height: 100vh;
+}
+
+.content {
+  width: 100%;
+  height: 92%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  min-width: 360px;
+  width: 48vw;
+  height: 72vh;
+  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.card-body {
+  padding: 0;
+  overflow: scroll;
+}
+
+.list-group-item {
+  border-radius: 0;
+}
+
+.add-goal {
+  position: absolute;
+  font-size: 24px;
+  top: 3px;
+  right: 20px;
+  padding: 0;
+}
+
+.edit-goal {
+  padding: 0;
+}

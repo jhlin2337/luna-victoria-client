@@ -1,13 +1,77 @@
 <div class="planner">
+  <!-- Navbar -->
   <nav class="navbar navbar-dark bg-dark">
     <div class="container">
       <a class="navbar-brand" href="#">Luna Victoria</a>
       <button class="btn btn-dark my-2 my-sm-0" type="submit">Log Out</button>
     </div>
   </nav>
-  <div class="content">
-    <div class="container">
 
+  <!-- Goals for the month -->
+  <div class="content">
+    <div class="card border-dark">
+      <h5 class="card-header">
+        April 2018
+        <button type="button" class="btn btn-link add-goal" data-toggle="modal" data-target="#addModalCenter">+</button>
+      </h5>
+      <div class="card-body">
+        <div class="list-group">
+          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">List group item heading</h5>
+              <small>
+                <button type="button" class="btn btn-link edit-goal" data-toggle="modal" data-target="#editModalCenter">
+                  Edit
+                </button>
+              </small>
+            </div>
+            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+            <small class="float-right">Deadline: April 21, 2018</small>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add new goal popup -->
+<div class="modal fade" id="addModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Adding schtuff
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit existing goal popup -->
+<div class="modal fade" id="editModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Editing schtuff
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
     </div>
   </div>
 </div>
