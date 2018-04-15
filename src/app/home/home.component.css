@@ -21,3 +21,12 @@
   box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.4);
 }
 
+.btn-login {
+  width: 80px;
+}
+
+@media(max-width: 576px) {
+  .btn-login {
+    width: 100%;
+  }
+}
