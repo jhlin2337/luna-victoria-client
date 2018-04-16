@@ -11,7 +11,7 @@
   <div class="content">
     <div class="card border-dark">
       <h5 class="card-header">
-        {{ date | date:'MMMM y' }}
+        {{ MONTHS[date.getMonth()] + ' ' + date.getFullYear() }}
         <button type="button" class="btn btn-link add-goal" data-toggle="modal" data-target="#addModalCenter">+</button>
       </h5>
       <div class="card-body">
@@ -29,7 +29,7 @@
               </small>
             </div>
             <p class="my-2">{{ goal.description }}</p>
-            <small class="float-right">Deadline: {{ goal.deadline | date:'MMMM d, y'}}</small>
+            <small class="float-right">Deadline: {{ getDate(goal.deadline) }}</small>
           </a>
         </div>
       </div>
@@ -48,24 +48,24 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form (ngSubmit)="addGoal(goalForm)" #goalForm="ngForm">
           <div class="form-group">
             <label for="goal-title" class="col-form-label">Title:</label>
-            <input type="text" class="form-control" id="goal-title">
+            <input type="text" class="form-control" id="goal-title" name="title" ngModel>
           </div>
           <div class="form-group">
             <label for="goal-description" class="col-form-label">Description:</label>
-            <textarea class="form-control" id="goal-description"></textarea>
+            <textarea class="form-control" id="goal-description" name="description" ngModel></textarea>
           </div>
           <div class="form-group">
             <label for="goal-deadline" class="col-form-label">Deadline:</label>
-            <input type="date" class="form-control" min="2000-01-01" max="2100-01-01" id="goal-deadline">
+            <input type="date" class="form-control" min="2000-01-01" max="2100-01-01" id="goal-deadline" name="deadline" ngModel>
+          </div>
+          <div class="float-right">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" onclick="$('.modal').modal('hide')">Save changes</button>
           </div>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
@@ -95,11 +95,11 @@
             <label for="goal-deadline" class="col-form-label">Deadline:</label>
             <input type="date" class="form-control" min="2000-01-01" max="2100-01-01" id="goal-deadline">
           </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger">Delete</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger">Delete</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>

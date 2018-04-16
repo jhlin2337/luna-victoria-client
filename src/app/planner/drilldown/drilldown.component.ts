@@ -12,7 +12,11 @@ export class DrilldownComponent implements OnInit {
   date: Date;
   currMonthGoals: [any];
 
+  readonly MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+                     'August', 'September', 'October', 'November', 'December'];
+
   getSub;
+  postSub;
 
   constructor(private activatedRoute: ActivatedRoute, private goalService: GoalService) { }
 
@@ -34,7 +38,7 @@ export class DrilldownComponent implements OnInit {
     }
 
     // Get the epoch time for the current month
-    const currMonthDate = this.date;
+    const currMonthDate = new Date(this.date);
     const currMonthEpoch = currMonthDate.getTime();
 
     // Get the epoch time for next month
@@ -47,5 +51,42 @@ export class DrilldownComponent implements OnInit {
       .subscribe((data: any) => {
         this.currMonthGoals = data;
       });
+  }
+
+  addGoal(goalForm) {
+    if (this.postSub) {
+      this.postSub.unsubscribe();
+    }
+
+    // Communicate to backend to create goal and store it in database
+    this.postSub = this.goalService.createGoal(goalForm.value)
+      .subscribe((data: any) => {
+        this.getCurrMonthGoals();
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+  deleteGoal() {
+
+  }
+
+  patchGoal() {
+
+  }
+
+  // Shows the deadline date for each of the goals. We did this instead of date pipe because of timezone differences
+  getDate(deadline) {
+    const offset = (new Date()).getTimezoneOffset();
+    const deadlineDate = new Date(deadline);
+    deadlineDate.setMinutes(deadlineDate.getMinutes() + offset);
+
+    const month = this.MONTHS[deadlineDate.getMonth()];
+    const day = deadlineDate.getDate();
+    const year = deadlineDate.getFullYear();
+
+    return month + ' ' + day + ', ' + year;
   }
 }

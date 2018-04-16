@@ -55,6 +55,7 @@ export class MonthlyGoalsCardComponent implements OnInit {
       completed: !goal.completed
     };
 
+    // Mark the goal as complete or incomplete
     this.postSub = this.goalService.updateGoal(id, patch)
       .subscribe((data: any) => {
         this.currMonthGoals[index].completed = patch.completed;

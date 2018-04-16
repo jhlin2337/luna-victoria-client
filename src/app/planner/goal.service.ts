@@ -28,4 +28,10 @@ export class GoalService {
 
     return this.http.patch(url, data, this.options).map((response: Response) => response.json());
   }
+
+  createGoal(data: any) {
+    const url = this.BASE_URL;
+
+    return this.http.post(url, data, this.options).map((response: Response) => response.json());
+  }
 }
