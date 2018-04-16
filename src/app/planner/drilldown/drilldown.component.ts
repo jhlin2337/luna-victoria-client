@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { GoalService } from '../goal.service';
 
 @Component({
@@ -26,7 +27,7 @@ export class DrilldownComponent implements OnInit {
   patchSub;
   deleteSub;
 
-  constructor(private activatedRoute: ActivatedRoute, private goalService: GoalService) { }
+  constructor(private activatedRoute: ActivatedRoute, private goalService: GoalService, private router: Router) { }
 
   ngOnInit() {
     this.getParams();
@@ -126,5 +127,11 @@ export class DrilldownComponent implements OnInit {
     const year = deadlineDate.getFullYear();
 
     return month + ' ' + day + ', ' + year;
+  }
+
+  // Log user out by redirecting them to home page and clearing jwt token
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['/']);
   }
 }

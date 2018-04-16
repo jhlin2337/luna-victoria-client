@@ -19,7 +19,6 @@ export class HomeComponent implements OnInit {
     this.signupInvalid = false;
     this.signupSuccessful = false;
     this.signupEmailExists = false;
-    console.log(localStorage.getItem(AppSettings.JWT_TOKEN));
   }
 
   ngOnInit() { }
