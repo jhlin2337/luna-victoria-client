@@ -11,12 +11,20 @@ export class DrilldownComponent implements OnInit {
 
   date: Date;
   currMonthGoals: [any];
+  modalEditGoal = {
+    _id: '',
+    title: '',
+    description: '',
+    deadline: '2018-01-01'
+  };
 
   readonly MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
                      'August', 'September', 'October', 'November', 'December'];
 
   getSub;
   postSub;
+  patchSub;
+  deleteSub;
 
   constructor(private activatedRoute: ActivatedRoute, private goalService: GoalService) { }
 
@@ -70,11 +78,41 @@ export class DrilldownComponent implements OnInit {
   }
 
   deleteGoal() {
+    if (this.deleteSub) {
+      this.deleteSub.unsubscribe();
+    }
 
+    // Make delete request
+    this.deleteSub = this.goalService.deleteGoal(this.modalEditGoal._id)
+      .subscribe((data: any) => {
+        this.getCurrMonthGoals();
+      });
   }
 
   patchGoal() {
+    if (this.patchSub) {
+      this.patchSub.unsubscribe();
+    }
 
+    // Get parameters for the patch
+    const id = this.modalEditGoal._id;
+    const patch = {
+      title: this.modalEditGoal.title,
+      description: this.modalEditGoal.description,
+      deadline: new Date(this.modalEditGoal.deadline)
+    };
+
+    // Make patch request
+    this.patchSub = this.goalService.updateGoal(id, patch)
+      .subscribe((data: any) => {
+        this.getCurrMonthGoals();
+      });
+  }
+
+  // Set global variable to equal goal in order to display in modal
+  setEditValues(goal) {
+    this.modalEditGoal = Object.assign({}, goal);
+    this.modalEditGoal.deadline = this.modalEditGoal.deadline.slice(0, 10);
   }
 
   // Shows the deadline date for each of the goals. We did this instead of date pipe because of timezone differences

@@ -23,7 +23,7 @@
             <div class="d-flex w-100 justify-content-between">
               <h5 class="mb-1">{{ goal.title }}</h5>
               <small>
-                <button type="button" class="btn btn-link edit-goal" data-toggle="modal" data-target="#editModalCenter">
+                <button type="button" class="btn btn-link edit-goal" data-toggle="modal" data-target="#editModalCenter" (click)="setEditValues(goal)">
                   Edit
                 </button>
               </small>
@@ -85,19 +85,19 @@
         <form>
           <div class="form-group">
             <label for="goal-title" class="col-form-label">Title:</label>
-            <input type="text" class="form-control" id="goal-title">
+            <input type="text" class="form-control" id="goal-title" name="title" [(ngModel)]="modalEditGoal.title">
           </div>
           <div class="form-group">
             <label for="goal-description" class="col-form-label">Description:</label>
-            <textarea class="form-control" id="goal-description"></textarea>
+            <textarea class="form-control" id="goal-description" name="description" [(ngModel)]="modalEditGoal.description"></textarea>
           </div>
           <div class="form-group">
             <label for="goal-deadline" class="col-form-label">Deadline:</label>
-            <input type="date" class="form-control" min="2000-01-01" max="2100-01-01" id="goal-deadline">
+            <input type="date" class="form-control" min="2000-01-01" max="2100-01-01" id="goal-deadline" name="deadline" [(ngModel)]="modalEditGoal.deadline">
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger">Delete</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+          <div class="float-right">
+            <button type="button" class="btn btn-danger" (click)="deleteGoal()" onclick="$('.modal').modal('hide')">Delete</button>
+            <button type="button" class="btn btn-primary" (click)="patchGoal()" onclick="$('.modal').modal('hide')">Save changes</button>
           </div>
         </form>
       </div>

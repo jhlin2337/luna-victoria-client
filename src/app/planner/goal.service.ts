@@ -34,4 +34,10 @@ export class GoalService {
 
     return this.http.post(url, data, this.options).map((response: Response) => response.json());
   }
+
+  deleteGoal(goalId: string) {
+    const url = this.BASE_URL + goalId;
+
+    return this.http.delete(url, this.options).map((response: Response) => response.json());
+  }
 }
