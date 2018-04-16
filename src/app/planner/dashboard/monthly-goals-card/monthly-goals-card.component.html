@@ -5,11 +5,10 @@
   </h5>
   <div class="card-body">
       <ul class="list-group">
-        <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let goal of currMonthGoals">
-          {{ goal.title }} {{goal.completed}}
-          <i *ngIf="!goal.completed" class="far fa-circle status incomplete"></i>
-          <i *ngIf="goal.completed" class="fas fa-check-circle status complete"></i>
-          <!-- <span class="badge badge-success badge-pill" *ngIf="goal.completed"><p class="checkmark">&#x2713;</p></span> -->
+        <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let goal of currMonthGoals; index as i">
+          {{ goal.title }}
+          <span *ngIf="!goal.completed" (click)="toggleComplete(goal, i)"><i class="far fa-circle status incomplete"></i></span>
+          <span *ngIf="goal.completed" (click)="toggleComplete(goal, i)"><i class="fas fa-check-circle status complete"></i></span>
         </li>
       </ul>
   </div>

@@ -12,21 +12,52 @@ export class MonthlyGoalsCardComponent implements OnInit {
   year: number;
   currMonthGoals: [any];
 
+  getSub;
+  postSub;
+
   constructor(private goalService: GoalService) {
     this.year = new Date().getFullYear();
   }
 
   ngOnInit() {
+    this.getGoalsData();
+  }
+
+  getGoalsData() {
+    if (this.getSub) {
+      this.getSub.unsubscribe();
+    }
+
+    // Get the epoch time for the current month
     const currMonthDate = new Date(this.month + ' ' + this.year);
     const currMonthEpoch = currMonthDate.getTime();
 
+    // Get the epoch time for next month
     const nextMonthDate = currMonthDate;
     nextMonthDate.setMonth(nextMonthDate.getMonth() + 1);
     const nextMonthEpoch = nextMonthDate.getTime();
 
-    this.goalService.getGoals(currMonthEpoch, nextMonthEpoch)
+    // Get goals that are due this month
+    this.getSub = this.goalService.getGoals(currMonthEpoch, nextMonthEpoch)
       .subscribe((data: any) => {
         this.currMonthGoals = data;
+      });
+  }
+
+  toggleComplete(goal, index) {
+    if (this.postSub) {
+      this.postSub.unsubscribe();
+    }
+
+    // Get information for patch
+    const id = goal._id;
+    const patch = {
+      completed: !goal.completed
+    };
+
+    this.postSub = this.goalService.updateGoal(id, patch)
+      .subscribe((data: any) => {
+        this.currMonthGoals[index].completed = patch.completed;
       });
   }
 
