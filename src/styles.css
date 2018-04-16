@@ -6,3 +6,13 @@ body {
 .navbar-brand {
   font-size: 1.54rem;
 }
+
+.logout {
+  color: white;
+  text-decoration: none;
+}
+
+.logout:hover {
+  color: white;
+  text-decoration: none;
+}

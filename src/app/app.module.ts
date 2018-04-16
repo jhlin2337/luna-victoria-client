@@ -16,8 +16,10 @@ import { GoalService } from './planner/goal.service';
 
 const routes = [
   { path: '', component: HomeComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'monthly-planner', component: DrilldownComponent },
+  { path: 'planner', component: PlannerComponent, children: [
+    { path: '', component: DashboardComponent, pathMatch: 'full' },
+    { path: ':date', component: DrilldownComponent }
+  ] },
   { path: '**', redirectTo: '/' }
 ];
 

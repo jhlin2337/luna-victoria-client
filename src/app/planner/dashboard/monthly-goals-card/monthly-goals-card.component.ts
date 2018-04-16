@@ -9,7 +9,7 @@ export class MonthlyGoalsCardComponent implements OnInit {
 
   @Input() month;
 
-  year;
+  year: number;
 
   constructor() {
     this.year = new Date().getFullYear();
@@ -18,4 +18,8 @@ export class MonthlyGoalsCardComponent implements OnInit {
   ngOnInit() {
   }
 
+  getRoute() {
+    const date = new Date(this.month + ' ' + this.year).getTime();
+    return '/planner/' + date;
+  }
 }

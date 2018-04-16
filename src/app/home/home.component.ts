@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
       // Store jwt token that we received from the backend if the login is successful
       .subscribe((data: any) => {
         localStorage.setItem(AppSettings.JWT_TOKEN, data.token);
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/planner']);
       },
       // Alert the user if authentication failed
       (error) => {
