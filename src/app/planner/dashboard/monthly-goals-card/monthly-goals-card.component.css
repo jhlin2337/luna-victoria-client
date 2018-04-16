@@ -29,3 +29,12 @@
   right: 15px;
   padding: 0;
 }
+
+.placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: #80808040;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
