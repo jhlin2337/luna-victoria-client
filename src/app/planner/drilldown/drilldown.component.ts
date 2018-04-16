@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-drilldown',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DrilldownComponent implements OnInit {
 
-  constructor() { }
+  date: Date;
+
+  constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.activatedRoute.params
+      .subscribe((params) => {
+        this.date = new Date(Number(params.date));
+      });
   }
 
 }
