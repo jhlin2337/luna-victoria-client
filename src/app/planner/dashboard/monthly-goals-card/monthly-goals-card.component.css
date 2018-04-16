@@ -8,8 +8,17 @@
   overflow: scroll;
 }
 
-.checkmark {
-  margin: 2px 0;
+.status {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.incomplete {
+  opacity: 0.4;
+}
+
+.complete {
+  color: green;
 }
 
 .edit-goal {
@@ -17,6 +26,6 @@
   font-size: 24px;
   color: #0066cc;
   top: 8px;
-  right: 16px;
+  right: 15px;
   padding: 0;
 }
