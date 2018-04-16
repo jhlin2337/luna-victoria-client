@@ -15,18 +15,21 @@
         <button type="button" class="btn btn-link add-goal" data-toggle="modal" data-target="#addModalCenter">+</button>
       </h5>
       <div class="card-body">
-        <div class="list-group">
-          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="placeholder" *ngIf="currMonthGoals && currMonthGoals.length < 1">
+          Click + to add a goal
+        </div>
+        <div class="list-group" *ngFor="let goal of currMonthGoals">
+          <a class="list-group-item list-group-item-action flex-column align-items-start">
             <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">List group item heading</h5>
+              <h5 class="mb-1">{{ goal.title }}</h5>
               <small>
                 <button type="button" class="btn btn-link edit-goal" data-toggle="modal" data-target="#editModalCenter">
                   Edit
                 </button>
               </small>
             </div>
-            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-            <small class="float-right">Deadline: April 21, 2018</small>
+            <p class="my-2">{{ goal.description }}</p>
+            <small class="float-right">Deadline: {{ goal.deadline | date:'MMMM d, y'}}</small>
           </a>
         </div>
       </div>

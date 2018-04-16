@@ -4,7 +4,7 @@
     <a [routerLink]="getRoute()" class="edit-goal"><i class="far fa-edit"></i></a>
   </h5>
   <div class="card-body">
-    <div class="placeholder" *ngIf="currMonthGoals.length < 1">
+    <div class="placeholder" *ngIf="currMonthGoals && currMonthGoals.length < 1">
       <!-- <a [routerLink]="getRoute()" class="btn btn-primary">Get Started</a> -->
       Click <i class="far fa-edit mx-1"></i> to get started
     </div>
