@@ -74,7 +74,7 @@ export class DrilldownComponent implements OnInit {
     }
 
     // Adjusts deadline date. Necessary because of UTC time difference
-    const offset = (new Date()).getTimezoneOffset();
+    const offset = (new Date(goalForm.value.deadline)).getTimezoneOffset();
     const deadlineDate = new Date(goalForm.value.deadline);
     deadlineDate.setMinutes(deadlineDate.getMinutes() + offset);
     goalForm.value.deadline = deadlineDate;
@@ -120,7 +120,7 @@ export class DrilldownComponent implements OnInit {
     };
 
     // Adjusts deadline date. Necessary because of UTC time difference
-    const offset = (new Date()).getTimezoneOffset();
+    const offset = (new Date(patch.deadline)).getTimezoneOffset();
     const deadlineDate = new Date(patch.deadline);
     deadlineDate.setMinutes(deadlineDate.getMinutes() + offset);
     patch.deadline = deadlineDate;
