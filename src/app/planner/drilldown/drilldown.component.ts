@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { GoalService } from '../goal.service';
-import { UserService } from '../../home/user.service';
 
 @Component({
   selector: 'app-drilldown',
@@ -28,8 +27,7 @@ export class DrilldownComponent implements OnInit {
   patchSub;
   deleteSub;
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router,
-              private goalService: GoalService, private userService: UserService) { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private goalService: GoalService) { }
 
   ngOnInit() {
     this.getParams();
@@ -37,6 +35,7 @@ export class DrilldownComponent implements OnInit {
   }
 
   getParams() {
+    // Get parameters from url
     this.activatedRoute.params
       .subscribe((params) => {
         this.date = new Date(Number(params.date));
@@ -145,14 +144,6 @@ export class DrilldownComponent implements OnInit {
   // Log user out by redirecting them to home page and clearing jwt token
   logout() {
     localStorage.clear();
-    this.router.navigate(['/']);
-  }
-
-  // Delete the user's account
-  deleteAccount() {
-    this.userService.delete()
-      .subscribe((data: any) => {});
-
     this.router.navigate(['/']);
   }
 }

@@ -10,6 +10,7 @@ import { PlannerComponent } from './planner/planner.component';
 import { DashboardComponent } from './planner/dashboard/dashboard.component';
 import { MonthlyGoalsCardComponent } from './planner/dashboard/monthly-goals-card/monthly-goals-card.component';
 import { DrilldownComponent } from './planner/drilldown/drilldown.component';
+import { NavbarComponent } from './planner/navbar/navbar.component';
 
 import { UserService } from './home/user.service';
 import { GoalService } from './planner/goal.service';
@@ -32,7 +33,8 @@ const routes = [
     PlannerComponent,
     DashboardComponent,
     MonthlyGoalsCardComponent,
-    DrilldownComponent
+    DrilldownComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
