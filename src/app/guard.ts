@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
-import {CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
-import {UserService} from '../auth';
+import { Injectable } from '@angular/core';
+import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { AppSettings } from './app-settings';
 
 @Injectable()
 export class Guard implements CanActivate {
@@ -8,10 +8,11 @@ export class Guard implements CanActivate {
   }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if () {
+    if (localStorage.getItem(AppSettings.JWT_TOKEN)) {
       return true;
     }
-    this.router.navigate(['some-other-route']);
+
+    this.router.navigate(['/']);
     return false;
   }
 }

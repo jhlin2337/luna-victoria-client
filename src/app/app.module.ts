@@ -14,9 +14,11 @@ import { DrilldownComponent } from './planner/drilldown/drilldown.component';
 import { UserService } from './home/user.service';
 import { GoalService } from './planner/goal.service';
 
+import { Guard } from './guard';
+
 const routes = [
   { path: '', component: HomeComponent },
-  { path: 'planner', component: PlannerComponent, children: [
+  { path: 'planner', component: PlannerComponent, canActivate: [Guard], children: [
     { path: '', component: DashboardComponent, pathMatch: 'full' },
     { path: ':date', component: DrilldownComponent }
   ] },
@@ -38,7 +40,7 @@ const routes = [
     FormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [UserService, GoalService],
+  providers: [UserService, GoalService, Guard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
