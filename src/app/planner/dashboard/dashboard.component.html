@@ -2,7 +2,16 @@
   <nav class="navbar navbar-dark bg-dark">
     <div class="container">
       <a routerLink="/planner" class="navbar-brand" href="#">Luna Victoria</a>
-      <button type="button" class="btn btn-dark" (click)="logout()">Log Out</button>
+      <div class="nav-right">
+        <button type="button" class="btn btn-dark" (click)="logout()">Log Out</button>
+        <div class="dropdown">
+          <a class="btn btn-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" (click)="deleteAccount()">Delete Account</a>
+          </div>
+        </div>
+      </div>
     </div>
   </nav>
   <div class="content">

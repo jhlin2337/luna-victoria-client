@@ -145,4 +145,12 @@ export class DrilldownComponent implements OnInit {
     localStorage.clear();
     this.router.navigate(['/']);
   }
+
+  // Delete the user's account
+  deleteAccount() {
+    this.userService.delete()
+      .subscribe((data: any) => {});
+
+    this.router.navigate(['/']);
+  }
 }
