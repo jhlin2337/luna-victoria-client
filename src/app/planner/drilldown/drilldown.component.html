@@ -30,7 +30,7 @@
             </div>
             <p class="my-2">{{ goal.description }}</p>
             <small class="float-left text-success" *ngIf="goal.completed">Status: Complete</small>
-            <small class="float-right">Deadline: {{ getDate(goal.deadline) }}</small>
+            <small class="float-right">Deadline: {{ goal.deadline | date:'MMMM d, y' }}</small>
           </a>
         </div>
       </div>

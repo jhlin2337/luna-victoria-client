@@ -71,6 +71,12 @@ export class DrilldownComponent implements OnInit {
       this.postSub.unsubscribe();
     }
 
+    // Adjusts deadline date. Necessary because of UTC time difference
+    const offset = (new Date()).getTimezoneOffset();
+    const deadlineDate = new Date(goalForm.value.deadline);
+    deadlineDate.setMinutes(deadlineDate.getMinutes() + offset);
+    goalForm.value.deadline = deadlineDate;
+
     // Communicate to backend to create goal and store it in database
     this.postSub = this.goalService.createGoal(goalForm.value)
       .subscribe((data: any) => {
@@ -111,6 +117,12 @@ export class DrilldownComponent implements OnInit {
       deadline: new Date(this.modalEditGoal.deadline)
     };
 
+    // Adjusts deadline date. Necessary because of UTC time difference
+    const offset = (new Date()).getTimezoneOffset();
+    const deadlineDate = new Date(patch.deadline);
+    deadlineDate.setMinutes(deadlineDate.getMinutes() + offset);
+    patch.deadline = deadlineDate;
+
     // Make patch request
     this.patchSub = this.goalService.updateGoal(id, patch)
       .subscribe((data: any) => {
@@ -126,19 +138,6 @@ export class DrilldownComponent implements OnInit {
   setEditValues(goal) {
     this.modalEditGoal = Object.assign({}, goal);
     this.modalEditGoal.deadline = this.modalEditGoal.deadline.slice(0, 10);
-  }
-
-  // Shows the deadline date for each of the goals. We did this instead of date pipe because of timezone differences
-  getDate(deadline) {
-    const offset = (new Date()).getTimezoneOffset();
-    const deadlineDate = new Date(deadline);
-    deadlineDate.setMinutes(deadlineDate.getMinutes() + offset);
-
-    const month = this.MONTHS[deadlineDate.getMonth()];
-    const day = deadlineDate.getDate();
-    const year = deadlineDate.getFullYear();
-
-    return month + ' ' + day + ', ' + year;
   }
 
   // Log user out by redirecting them to home page and clearing jwt token
