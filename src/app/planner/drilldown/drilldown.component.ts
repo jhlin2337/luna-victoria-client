@@ -59,6 +59,10 @@ export class DrilldownComponent implements OnInit {
     this.getSub = this.goalService.getGoals(currMonthEpoch, nextMonthEpoch)
       .subscribe((data: any) => {
         this.currMonthGoals = data;
+      }, (err) => {
+        if (err.status === 401) {
+          this.logout();
+        }
       });
   }
 
@@ -71,11 +75,11 @@ export class DrilldownComponent implements OnInit {
     this.postSub = this.goalService.createGoal(goalForm.value)
       .subscribe((data: any) => {
         this.getCurrMonthGoals();
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+      }, (err) => {
+        if (err.status === 401) {
+          this.logout();
+        }
+      });
   }
 
   deleteGoal() {
@@ -87,6 +91,10 @@ export class DrilldownComponent implements OnInit {
     this.deleteSub = this.goalService.deleteGoal(this.modalEditGoal._id)
       .subscribe((data: any) => {
         this.getCurrMonthGoals();
+      }, (err) => {
+        if (err.status === 401) {
+          this.logout();
+        }
       });
   }
 
@@ -107,6 +115,10 @@ export class DrilldownComponent implements OnInit {
     this.patchSub = this.goalService.updateGoal(id, patch)
       .subscribe((data: any) => {
         this.getCurrMonthGoals();
+      }, (err) => {
+        if (err.status === 401) {
+          this.logout();
+        }
       });
   }
 

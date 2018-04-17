@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { GoalService } from '../../goal.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class MonthlyGoalsCardComponent implements OnInit {
   getSub;
   postSub;
 
-  constructor(private goalService: GoalService) {
+  constructor(private goalService: GoalService, private router: Router) {
     this.year = new Date().getFullYear();
   }
 
@@ -41,6 +42,10 @@ export class MonthlyGoalsCardComponent implements OnInit {
     this.getSub = this.goalService.getGoals(currMonthEpoch, nextMonthEpoch)
       .subscribe((data: any) => {
         this.currMonthGoals = data;
+      }, (err) => {
+        if (err.status === 401) {
+          this.logout();
+        }
       });
   }
 
@@ -59,11 +64,21 @@ export class MonthlyGoalsCardComponent implements OnInit {
     this.postSub = this.goalService.updateGoal(id, patch)
       .subscribe((data: any) => {
         this.currMonthGoals[index].completed = patch.completed;
+      }, (err) => {
+        if (err.status === 401) {
+          this.logout();
+        }
       });
   }
 
   getRoute() {
     const date = new Date(this.month + ' ' + this.year).getTime();
     return '/planner/' + date;
+  }
+
+  // Log user out by redirecting them to home page and clearing jwt token
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['/']);
   }
 }
