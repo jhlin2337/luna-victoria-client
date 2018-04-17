@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { GoalService } from '../goal.service';
+import { UserService } from '../../home/user.service';
 
 @Component({
   selector: 'app-drilldown',
@@ -27,7 +28,8 @@ export class DrilldownComponent implements OnInit {
   patchSub;
   deleteSub;
 
-  constructor(private activatedRoute: ActivatedRoute, private goalService: GoalService, private router: Router) { }
+  constructor(private activatedRoute: ActivatedRoute, private router: Router,
+              private goalService: GoalService, private userService: UserService) { }
 
   ngOnInit() {
     this.getParams();
