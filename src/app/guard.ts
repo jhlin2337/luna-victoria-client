@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { AppSettings } from './app-settings';
+import { UserService } from './home/user.service';
 
 @Injectable()
 export class Guard implements CanActivate {
-  constructor(private router: Router) {
+  constructor(private router: Router, private userService: UserService) {
   }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (localStorage.getItem(AppSettings.JWT_TOKEN)) {
+    if (this.userService.getToken()) {
       return true;
     }
 
-    this.router.navigate(['/']);
+    this.userService.logout();
     return false;
   }
 }

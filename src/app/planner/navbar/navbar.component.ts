@@ -16,16 +16,12 @@ export class NavbarComponent implements OnInit {
 
   // Log user out by redirecting them to home page and clearing jwt token
   logout() {
-    localStorage.clear();
-    this.router.navigate(['/']);
+    this.userService.logout();
   }
 
   // Delete the user's account
   deleteAccount() {
     this.userService.delete()
       .subscribe((data: any) => {});
-
-    localStorage.clear();
-    this.router.navigate(['/']);
   }
 }

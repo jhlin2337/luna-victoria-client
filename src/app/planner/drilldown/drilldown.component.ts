@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
 import { GoalService } from '../goal.service';
+import { UserService } from '../../home/user.service';
 
 @Component({
   selector: 'app-drilldown',
@@ -27,7 +27,7 @@ export class DrilldownComponent implements OnInit {
   patchSub;
   deleteSub;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private goalService: GoalService) { }
+  constructor(private activatedRoute: ActivatedRoute, private goalService: GoalService, private userService: UserService) { }
 
   ngOnInit() {
     this.getParams();
@@ -62,7 +62,7 @@ export class DrilldownComponent implements OnInit {
         this.currMonthGoals = data;
       }, (err) => {
         if (err.status === 401) {
-          this.logout();
+          this.userService.logout();
         }
       });
   }
@@ -84,7 +84,7 @@ export class DrilldownComponent implements OnInit {
         this.getCurrMonthGoals();
       }, (err) => {
         if (err.status === 401) {
-          this.logout();
+          this.userService.logout();
         }
       });
   }
@@ -100,7 +100,7 @@ export class DrilldownComponent implements OnInit {
         this.getCurrMonthGoals();
       }, (err) => {
         if (err.status === 401) {
-          this.logout();
+          this.userService.logout();
         }
       });
   }
@@ -130,7 +130,7 @@ export class DrilldownComponent implements OnInit {
         this.getCurrMonthGoals();
       }, (err) => {
         if (err.status === 401) {
-          this.logout();
+          this.userService.logout();
         }
       });
   }
@@ -139,11 +139,5 @@ export class DrilldownComponent implements OnInit {
   setEditValues(goal) {
     this.modalEditGoal = Object.assign({}, goal);
     this.modalEditGoal.deadline = this.modalEditGoal.deadline.slice(0, 10);
-  }
-
-  // Log user out by redirecting them to home page and clearing jwt token
-  logout() {
-    localStorage.clear();
-    this.router.navigate(['/']);
   }
 }

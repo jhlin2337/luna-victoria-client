@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { GoalService } from '../../goal.service';
+import { UserService } from '../../../home/user.service';
 
 @Component({
   selector: 'app-monthly-goals-card',
@@ -16,7 +17,7 @@ export class MonthlyGoalsCardComponent implements OnInit {
   getSub;
   postSub;
 
-  constructor(private goalService: GoalService, private router: Router) {
+  constructor(private goalService: GoalService, private userService: UserService, private router: Router) {
     this.year = new Date().getFullYear();
   }
 
@@ -78,7 +79,6 @@ export class MonthlyGoalsCardComponent implements OnInit {
 
   // Log user out by redirecting them to home page and clearing jwt token
   logout() {
-    localStorage.clear();
-    this.router.navigate(['/']);
+    this.userService.logout();
   }
 }

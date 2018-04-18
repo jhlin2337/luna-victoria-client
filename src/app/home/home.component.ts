@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
 import { Router } from '@angular/router';
 import { UserService } from './user.service';
-import { AppSettings } from '../app-settings';
 
 @Component({
   selector: 'app-home',
@@ -32,17 +31,7 @@ export class HomeComponent implements OnInit {
     }
 
     // Make login request to backend
-    this.userService.login(loginForm.value)
-      // Store jwt token that we received from the backend if the login is successful
-      .subscribe((data: any) => {
-        localStorage.setItem(AppSettings.JWT_TOKEN, data.token);
-        this.router.navigate(['/planner']);
-      },
-      // Alert the user if authentication failed
-      (error) => {
-        alert('Authentication Failed. Incorrect email or password');
-      }
-    );
+    this.userService.login(loginForm.value);
   }
 
   // Communicate with backend to sign user up
