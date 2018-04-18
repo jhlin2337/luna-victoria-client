@@ -25,6 +25,7 @@ export class NavbarComponent implements OnInit {
     this.userService.delete()
       .subscribe((data: any) => {});
 
+    localStorage.clear();
     this.router.navigate(['/']);
   }
 }
