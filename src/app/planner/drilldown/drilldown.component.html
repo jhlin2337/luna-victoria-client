@@ -55,7 +55,7 @@
           </div>
           <div class="form-group">
             <label for="goal-deadline" class="col-form-label">Deadline:</label>
-            <input type="date" class="form-control" min="2000-01-01" max="2100-01-01" id="goal-deadline" name="deadline" ngModel>
+            <input type="date" class="form-control" min="2000-01-01" max="2100-01-01" id="goal-deadline" name="deadline" placeholder="mm/dd/yyyy" ngModel>
           </div>
           <div class="float-right">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -89,7 +89,7 @@
           </div>
           <div class="form-group">
             <label for="goal-deadline" class="col-form-label">Deadline:</label>
-            <input type="date" class="form-control" min="2000-01-01" max="2100-01-01" id="goal-deadline" name="deadline" [(ngModel)]="modalEditGoal.deadline">
+            <input type="date" class="form-control" min="2000-01-01" max="2100-01-01" id="goal-deadline" name="deadline" placeholder="mm/dd/yyyy" [(ngModel)]="modalEditGoal.deadline">
           </div>
           <div class="float-right">
             <button type="button" class="btn btn-danger" (click)="deleteGoal()" onclick="$('.modal').modal('hide')">Delete</button>

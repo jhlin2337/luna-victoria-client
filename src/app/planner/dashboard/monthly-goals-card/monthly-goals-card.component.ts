@@ -17,6 +17,9 @@ export class MonthlyGoalsCardComponent implements OnInit {
   getSub;
   postSub;
 
+  readonly MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+                     'August', 'September', 'October', 'November', 'December'];
+
   constructor(private goalService: GoalService, private userService: UserService, private router: Router) {
     this.year = new Date().getFullYear();
   }
@@ -31,7 +34,7 @@ export class MonthlyGoalsCardComponent implements OnInit {
     }
 
     // Get the epoch time for the current month
-    const currMonthDate = new Date(this.month + ' ' + this.year);
+    const currMonthDate = new Date(this.year, this.month, 1);
     const currMonthEpoch = currMonthDate.getTime();
 
     // Get the epoch time for next month
@@ -73,7 +76,7 @@ export class MonthlyGoalsCardComponent implements OnInit {
   }
 
   getRoute() {
-    const date = new Date(this.month + ' ' + this.year).getTime();
+    const date = new Date(this.year, this.month, 1).getTime();
     return '/planner/' + date;
   }
 
